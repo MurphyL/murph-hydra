@@ -6,9 +6,12 @@ package com.murphyl.x;
  * @date: 2021/10/20 20:09
  * @author: murph
  */
-public interface MurphFeature {
+public interface Feature {
 
-    default void log() {
+    /**
+     * 展开插件
+     */
+    default void extract() {
         System.out.println(getClass());
     }
 

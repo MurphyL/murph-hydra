@@ -18,7 +18,7 @@
 
     <modules>
         <module>hydra-core</module>
-        <module>features/hydra-etl</module>
+        <module>features/hydra-task</module>
         <module>features/hydra-rest</module>
     </modules>
 

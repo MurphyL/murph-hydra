@@ -1,6 +1,6 @@
 package com.murphyl.hydra;
 
-import com.murphyl.x.MurphFeature;
+import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import org.slf4j.Logger;
@@ -18,14 +18,14 @@ public class Application extends AbstractVerticle {
 
     @Override
     public void start(Promise<Void> startPromise) {
-        Iterator<MurphFeature> features = ServiceLoader.load(MurphFeature.class).iterator();
+        Iterator<Feature> features = ServiceLoader.load(Feature.class).iterator();
         logger.info("开始发布动态模块……");
         while (features.hasNext()) {
             this.deploy(features.next());
         }
     }
 
-    public void deploy(MurphFeature feature) {
+    public void deploy(Feature feature) {
         logger.info(feature.toString());
     }
 
