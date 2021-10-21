@@ -1,10 +1,11 @@
 package com.murphyl.hydra;
 
-import com.murphyl.hydra.core.AbstractFeature;
+import com.murphyl.hydra.core.MixinVerticle;
 import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Verticle;
+import net.sf.cglib.proxy.Mixin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,8 @@ public final class Application extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
+    private static final Class[] HYDRA_FACES = {Verticle.class, Feature.class, MixinVerticle.class};
+
     @Override
     public void start(Promise<Void> startPromise) {
         Iterator<Feature> features = ServiceLoader.load(Feature.class).iterator();
@@ -30,18 +33,12 @@ public final class Application extends AbstractVerticle {
     }
 
     public void deploy(Feature feature) {
-        if (feature instanceof AbstractFeature) {
+        if (feature instanceof AbstractVerticle) {
             vertx.deployVerticle((Verticle) feature);
         } else {
-            vertx.deployVerticle(new AbstractVerticle() {
-
-                @Override
-                public void start() {
-                    feature.execute();
-                    logger.info("尝试注册可插拔模块：{}", feature);
-                }
-
-            });
+            Object o = Mixin.create(HYDRA_FACES, new Object[]{new AbstractVerticle() {
+            }, feature});
+            logger.info("mixin = {}", o);
         }
 
 
