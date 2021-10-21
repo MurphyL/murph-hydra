@@ -19,7 +19,6 @@
     <modules>
         <module>hydra-core</module>
         <module>features/hydra-task</module>
-        <module>features/hydra-rest</module>
     </modules>
 
     <dependencyManagement>
@@ -28,6 +27,12 @@
                 <groupId>com.murphyl.x</groupId>
                 <artifactId>murph-x</artifactId>
                 <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>3.3.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hydra-etl</artifactId>
+    <artifactId>hydra-task</artifactId>
 
     <properties>
     </properties>
@@ -19,7 +19,6 @@
         <dependency>
             <groupId>com.murphyl.x</groupId>
             <artifactId>murph-x</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

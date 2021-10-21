@@ -45,13 +45,17 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-mail-client</artifactId>
+            <artifactId>vertx-core</artifactId>
         </dependency>
     </dependencies>
     <build>

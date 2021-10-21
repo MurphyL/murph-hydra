@@ -1,8 +1,10 @@
 package com.murphyl.hydra;
 
+import com.murphyl.hydra.core.AbstractFeature;
 import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.Verticle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +12,11 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
+ * 应用程序入口
+ *
  * @author murph
  */
-public class Application extends AbstractVerticle {
+public final class Application extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
@@ -26,7 +30,21 @@ public class Application extends AbstractVerticle {
     }
 
     public void deploy(Feature feature) {
-        logger.info(feature.toString());
+        if (feature instanceof AbstractFeature) {
+            vertx.deployVerticle((Verticle) feature);
+        } else {
+            vertx.deployVerticle(new AbstractVerticle() {
+
+                @Override
+                public void start() {
+                    feature.execute();
+                    logger.info("尝试注册可插拔模块：{}", feature);
+                }
+
+            });
+        }
+
+
     }
 
 }

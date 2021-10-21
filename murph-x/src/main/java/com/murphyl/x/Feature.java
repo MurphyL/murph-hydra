@@ -1,5 +1,7 @@
 package com.murphyl.x;
 
+import java.util.concurrent.Exchanger;
+
 /**
  * 可插拔 - 模块
  *
@@ -9,10 +11,7 @@ package com.murphyl.x;
 public interface Feature {
 
     /**
-     * 展开插件
+     * 开始执行
      */
-    default void extract() {
-        System.out.println(getClass());
-    }
-
+    void execute();
 }
