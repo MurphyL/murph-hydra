@@ -12,5 +12,6 @@ public class TaskFeature implements Feature {
 
     @Override
     public void execute() {
+        System.out.println("hello");
     }
 }

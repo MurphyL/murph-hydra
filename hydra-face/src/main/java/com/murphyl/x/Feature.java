@@ -6,11 +6,14 @@ package com.murphyl.x;
  * @date: 2021/10/20 20:09
  * @author: murph
  */
+@FunctionalInterface
 public interface Feature {
 
     /**
      * 开始执行
      */
     void execute();
+
+
 
 }

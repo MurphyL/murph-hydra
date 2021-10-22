@@ -1,1 +1,1 @@
-com.murphyl.hydra.rest.RestFeature
+com.murphyl.hydra.feature.rest.RestFeature

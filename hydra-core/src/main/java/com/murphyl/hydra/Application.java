@@ -1,12 +1,11 @@
 package com.murphyl.hydra;
 
-import com.murphyl.hydra.core.FeatureVerticle;
 import com.murphyl.hydra.core.MixinFeature;
+import com.murphyl.hydra.support.vertx.VerticleDeployHandler;
 import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Verticle;
-import net.sf.cglib.proxy.Mixin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,19 +33,18 @@ public final class Application extends AbstractVerticle {
     }
 
     public void deploy(Feature feature) {
+        String unique = feature.getClass().getCanonicalName();
         if (feature instanceof AbstractVerticle) {
-            vertx.deployVerticle((Verticle) feature);
-            logger.info("核心模块发布完成：{}", feature.getClass().getCanonicalName());
+            vertx.deployVerticle((Verticle) feature, new VerticleDeployHandler(unique));
         } else {
-            Object[] instances = new Object[]{new FeatureVerticle(), feature};
-            MixinFeature mixinFeature = (MixinFeature) Mixin.create(HYDRA_FACES, instances);
-            vertx.deployVerticle(mixinFeature);
-            String featureName = feature.getClass().getCanonicalName();
-            String mixinUnique = mixinFeature.getClass().getSimpleName();
-            logger.info("动态模块发布完成：{}$${}", featureName, mixinUnique);
+            vertx.deployVerticle(new AbstractVerticle() {
+                @Override
+                public void start(Promise<Void> startPromise) throws Exception {
+                    super.start(startPromise);
+                    feature.execute();
+                }
+            }, new VerticleDeployHandler(unique));
         }
-
-
     }
 
 }
