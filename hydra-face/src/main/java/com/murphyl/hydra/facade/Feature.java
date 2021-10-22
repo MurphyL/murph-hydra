@@ -1,4 +1,4 @@
-package com.murphyl.x;
+package com.murphyl.hydra.facade;
 
 /**
  * 可插拔 - 模块

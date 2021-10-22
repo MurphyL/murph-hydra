@@ -1,8 +1,8 @@
 package com.murphyl.hydra;
 
 import com.murphyl.hydra.core.MixinFeature;
+import com.murphyl.hydra.facade.Feature;
 import com.murphyl.hydra.support.vertx.VerticleDeployHandler;
-import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Verticle;

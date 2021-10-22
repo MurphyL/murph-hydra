@@ -1,6 +1,6 @@
 package com.murphyl.hydra.core;
 
-import com.murphyl.x.Feature;
+import com.murphyl.hydra.facade.Feature;
 import io.vertx.core.Verticle;
 
 /**

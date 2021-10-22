@@ -24,9 +24,9 @@ public class VerticleDeployHandler implements Handler<AsyncResult<String>> {
     @Override
     public void handle(AsyncResult<String> event) {
         if (event.succeeded()) {
-            logger.info("核心模块发布完成：{}", unique);
+            logger.info("动态模块发布完成：{}", unique);
         } else {
-            logger.info("核心模块发布失败：{}，{}", unique, event.cause());
+            logger.info("动态模块发布失败：{}，{}", unique, event.cause());
         }
     }
 }

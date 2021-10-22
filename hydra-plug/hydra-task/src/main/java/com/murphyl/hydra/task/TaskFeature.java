@@ -1,6 +1,6 @@
 package com.murphyl.hydra.task;
 
-import com.murphyl.x.Feature;
+import com.murphyl.hydra.facade.Feature;
 
 /**
  * 任务插件 - 门面
