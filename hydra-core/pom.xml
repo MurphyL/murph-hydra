@@ -2,13 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>hydra</artifactId>
         <groupId>com.murphyl</groupId>
         <version>1.0.0</version>
     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hydra-core</artifactId>
 
@@ -30,22 +31,11 @@
         <logger.factory>io.vertx.core.logging.SLF4JLogDelegateFactory</logger.factory>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-stack-depchain</artifactId>
-                <version>${vertx.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.murphyl</groupId>
@@ -56,11 +46,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib-nodep</artifactId>
-            <version>3.3.0</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
