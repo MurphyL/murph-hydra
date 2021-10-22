@@ -2,7 +2,7 @@ package com.murphyl.hydra;
 
 import com.murphyl.hydra.core.MixinFeature;
 import com.murphyl.hydra.facade.Feature;
-import com.murphyl.hydra.support.vertx.VerticleDeployHandler;
+import com.murphyl.hydra.support.vertx.VertxCallback;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.Verticle;
@@ -34,8 +34,9 @@ public final class Application extends AbstractVerticle {
 
     public void deploy(Feature feature) {
         String unique = feature.getClass().getCanonicalName();
+        VertxCallback callback = new VertxCallback("动态模块（" + unique + "）发布{}");
         if (feature instanceof AbstractVerticle) {
-            vertx.deployVerticle((Verticle) feature, new VerticleDeployHandler(unique));
+            vertx.deployVerticle((Verticle) feature, callback);
         } else {
             vertx.deployVerticle(new AbstractVerticle() {
                 @Override
@@ -43,7 +44,7 @@ public final class Application extends AbstractVerticle {
                     super.start(startPromise);
                     feature.execute();
                 }
-            }, new VerticleDeployHandler(unique));
+            }, callback);
         }
     }
 

@@ -1,1 +1,1 @@
-com.murphyl.hydra.task.TaskFeature
+com.murphyl.hydra.feature.task.TaskFeature
