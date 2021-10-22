@@ -1,5 +1,6 @@
 package com.murphyl.hydra;
 
+import com.murphyl.hydra.core.FeatureVerticle;
 import com.murphyl.hydra.core.MixinFeature;
 import com.murphyl.x.Feature;
 import io.vertx.core.AbstractVerticle;
@@ -35,13 +36,14 @@ public final class Application extends AbstractVerticle {
     public void deploy(Feature feature) {
         if (feature instanceof AbstractVerticle) {
             vertx.deployVerticle((Verticle) feature);
+            logger.info("核心模块发布完成：{}", feature.getClass().getCanonicalName());
         } else {
-            MixinFeature mixinFeature = (MixinFeature) Mixin.create(HYDRA_FACES, new Object[]{new AbstractVerticle() {
-            }, feature});
+            Object[] instances = new Object[]{new FeatureVerticle(), feature};
+            MixinFeature mixinFeature = (MixinFeature) Mixin.create(HYDRA_FACES, instances);
             vertx.deployVerticle(mixinFeature);
             String featureName = feature.getClass().getCanonicalName();
             String mixinUnique = mixinFeature.getClass().getSimpleName();
-            logger.info("deploy mixin feature = {}$${}", featureName, mixinUnique);
+            logger.info("动态模块发布完成：{}$${}", featureName, mixinUnique);
         }
 
 
