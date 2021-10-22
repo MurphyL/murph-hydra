@@ -20,22 +20,22 @@
     <modules>
         <module>hydra-core</module>
         <module>hydra-face</module>
-        <module>hydra-plug</module>
+        <module>plug-ins/hydra-task</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-stack-depchain</artifactId>
-                <version>${vertx.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>com.murphyl</groupId>
                 <artifactId>hydra-face</artifactId>
                 <version>${project.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.32</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

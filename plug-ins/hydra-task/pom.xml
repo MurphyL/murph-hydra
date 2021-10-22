@@ -3,17 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>hydra</artifactId>
         <groupId>com.murphyl</groupId>
         <version>1.0.0</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
-    <packaging>pom</packaging>
 
-    <artifactId>hydra-plug</artifactId>
+    <artifactId>hydra-task</artifactId>
 
-    <modules>
-        <module>hydra-task</module>
-    </modules>
+    <properties>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.murphyl</groupId>
+            <artifactId>hydra-face</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

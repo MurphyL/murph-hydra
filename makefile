@@ -10,7 +10,7 @@ endef
 
 # run feature
 define hydra_run
-	$(or $(JAVA_HOME)/bin/java, java) --illegal-access=warn -classpath $(CURDIR)/hydra-face/target/hydra-face-$(version).jar;$(CURDIR)/hydra-core/target/hydra-app-$(version).jar;$(CURDIR)/hydra-plug/$(strip $(1))/target/$(strip $(if $(2), classes, $(1)-$(version).jar)) $(option) io.vertx.core.Launcher run com.murphyl.hydra.Application
+	$(or $(JAVA_HOME)/bin/java, java) --illegal-access=warn -classpath $(CURDIR)/hydra-core/target/hydra-app-$(version).jar;$(CURDIR)/plug-ins/$(strip $(1))/target/$(strip $(if $(2), classes, $(1)-$(version).jar)) $(option) io.vertx.core.Launcher run com.murphyl.hydra.Application
 endef
 
 build/face:
@@ -21,12 +21,8 @@ build/core:
 	$(call maven_build, hydra-core)
 
 run/task: build/face build/core
-	$(call maven_build, hydra-plug/hydra-task)
+	$(call maven_build, plug-ins/hydra-task)
 	$(call hydra_run, hydra-task)
 	
-run/rest: build/face build/core
-	$(call maven_build, hydra/features/hydra-rest)
-	$(call hydra_run, hydra-rest)
-
 java/help:
 	$(or $(JAVA_HOME)/bin/java, java) --help

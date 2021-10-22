@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.murphyl</groupId>
+    <parent>
+        <artifactId>hydra</artifactId>
+        <groupId>com.murphyl</groupId>
+        <version>1.0.0</version>
+    </parent>
+
     <artifactId>hydra-core</artifactId>
-    <version>1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +23,6 @@
 
         <vertx.version>4.1.5</vertx.version>
         <logback.version>1.2.5</logback.version>
-        <junit-jupiter.version>5.7.0</junit-jupiter.version>
 
         <main.verticle>com.murphyl.hydra.Application</main.verticle>
         <launcher.class>io.vertx.core.Launcher</launcher.class>
@@ -38,22 +41,26 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.murphyl</groupId>
             <artifactId>hydra-face</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
             <version>3.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.32</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -66,10 +73,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-core</artifactId>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>
