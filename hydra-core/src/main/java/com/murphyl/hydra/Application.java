@@ -1,7 +1,7 @@
 package com.murphyl.hydra;
 
 import com.murphyl.hydra.core.MixinFeature;
-import com.murphyl.hydra.facade.Feature;
+import com.murphyl.hydra.facade.HydraFeature;
 import com.murphyl.hydra.support.vertx.VertxCallback;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -21,18 +21,18 @@ public final class Application extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private static final Class[] HYDRA_FACES = {Verticle.class, Feature.class, MixinFeature.class};
+    private static final Class[] HYDRA_FACES = {Verticle.class, HydraFeature.class, MixinFeature.class};
 
     @Override
     public void start(Promise<Void> startPromise) {
-        Iterator<Feature> features = ServiceLoader.load(Feature.class).iterator();
+        Iterator<HydraFeature> features = ServiceLoader.load(HydraFeature.class).iterator();
         logger.info("开始发布动态模块……");
         while (features.hasNext()) {
             this.deploy(features.next());
         }
     }
 
-    public void deploy(Feature feature) {
+    public void deploy(HydraFeature feature) {
         String unique = feature.getClass().getCanonicalName();
         VertxCallback callback = new VertxCallback("动态模块（" + unique + "）发布{}");
         if (feature instanceof AbstractVerticle) {

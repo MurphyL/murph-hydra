@@ -19,7 +19,7 @@
 
     <modules>
         <module>hydra-core</module>
-        <module>hydra-face</module>
+        <module>hydra-plug</module>
         <module>plug-ins/hydra-task</module>
         <module>plug-ins/hydra-config</module>
     </modules>
@@ -30,11 +30,10 @@
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-core</artifactId>
                 <version>${vertx.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.murphyl</groupId>
-                <artifactId>hydra-face</artifactId>
+                <artifactId>hydra-plug</artifactId>
                 <version>${project.version}</version>
                 <scope>provided</scope>
             </dependency>

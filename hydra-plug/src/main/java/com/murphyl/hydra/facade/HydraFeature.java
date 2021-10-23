@@ -7,7 +7,7 @@ package com.murphyl.hydra.facade;
  * @author: murph
  */
 @FunctionalInterface
-public interface Feature {
+public interface HydraFeature {
 
     /**
      * 开始执行

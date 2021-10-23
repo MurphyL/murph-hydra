@@ -19,12 +19,17 @@
     <dependencies>
         <dependency>
             <groupId>com.murphyl</groupId>
-            <artifactId>hydra-face</artifactId>
+            <artifactId>hydra-plug</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>../../../target/${project.artifactId}-${project.version}</finalName>
+    </build>
 
 </project>

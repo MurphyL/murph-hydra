@@ -1,6 +1,6 @@
 package com.murphyl.hydra.core;
 
-import com.murphyl.hydra.facade.Feature;
+import com.murphyl.hydra.facade.HydraFeature;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * @date: 2021/10/22 13:36
  * @author: murph
  */
-public class FeatureVerticle extends AbstractVerticle implements Feature {
+public abstract class FeatureVerticle extends AbstractVerticle implements HydraFeature {
 
     private static final Logger logger = LoggerFactory.getLogger(FeatureVerticle.class);
 
