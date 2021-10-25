@@ -20,7 +20,7 @@
     <modules>
         <module>hydra-core</module>
         <module>hydra-plug</module>
-        <module>plug-ins/hydra-task</module>
+        <module>plug-ins/hydra-tasker</module>
         <module>plug-ins/hydra-config</module>
     </modules>
 

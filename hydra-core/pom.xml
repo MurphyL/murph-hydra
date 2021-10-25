@@ -39,7 +39,6 @@
         <dependency>
             <groupId>com.murphyl</groupId>
             <artifactId>hydra-plug</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -57,7 +56,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
