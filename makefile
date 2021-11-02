@@ -1,7 +1,7 @@
 # 执行版本
 version:=1.0.0
 
-jars:=$(wildcard $(CURDIR)/cache/*.jar)
+jars:=$(CURDIR)/target/hydra-app-1.0.0.jar;$(CURDIR)/target/hydra-plug-1.0.0.jar
 
 options:=-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
 
@@ -11,8 +11,8 @@ define maven_build # project
 endef
 
 # run feature
-define hydra_run # projects
-	$(or $(JAVA_HOME)/bin/java, java) --class-path $(CURDIR)/target/ $(options) io.vertx.core.Launcher run com.murphyl.hydra.Application
+define hydra_run
+	$(or $(JAVA_HOME)/bin/java, java) -verbose:classes -classpath $(jars);$(strip $(1)) io.vertx.core.Launcher run com.murphyl.hydra.Application
 endef
 
 build/face:
@@ -24,12 +24,12 @@ build/core:
 
 run/task: build/face build/core
 	$(call maven_build, plug-ins/hydra-task)
-	$(call hydra_run, hydra-task)
+	$(call hydra_run, $(CURDIR)/target/hydra-task-1.0.0.jar)
 
 run/config-task: build/face build/core
 	$(call maven_build, plug-ins/hydra-config)
 	$(call maven_build, plug-ins/hydra-task)
-	$(call hydra_run, hydra-task)
+	$(call hydra_run, $(CURDIR)/target/hydra-task-1.0.0.jar;$(CURDIR)/target/hydra-config-1.0.0.jar)
 
 java/help:
 	$(or $(JAVA_HOME)/bin/java, java) --help

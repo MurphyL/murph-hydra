@@ -6,14 +6,11 @@ package com.murphyl.hydra.facade;
  * @date: 2021/10/20 20:09
  * @author: murph
  */
-@FunctionalInterface
 public interface HydraFeature {
 
     /**
      * 开始执行
      */
     void execute();
-
-
 
 }
