@@ -11,7 +11,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>hydra-task</artifactId>
+    <artifactId>hydra-tasker</artifactId>
 
     <properties>
     </properties>

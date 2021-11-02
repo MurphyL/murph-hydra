@@ -23,13 +23,13 @@ build/core:
 	$(call maven_build, hydra-core)
 
 run/task: build/face build/core
-	$(call maven_build, plug-ins/hydra-task)
-	$(call hydra_run, $(CURDIR)/target/hydra-task-1.0.0.jar)
+	$(call maven_build, plug-ins/hydra-tasker)
+	$(call hydra_run, $(CURDIR)/target/hydra-tasker-1.0.0.jar)
 
 run/config-task: build/face build/core
 	$(call maven_build, plug-ins/hydra-config)
-	$(call maven_build, plug-ins/hydra-task)
-	$(call hydra_run, $(CURDIR)/target/hydra-task-1.0.0.jar;$(CURDIR)/target/hydra-config-1.0.0.jar)
+	$(call maven_build, plug-ins/hydra-tasker)
+	$(call hydra_run, $(CURDIR)/target/hydra-tasker-1.0.0.jar;$(CURDIR)/target/hydra-config-1.0.0.jar)
 
 java/help:
 	$(or $(JAVA_HOME)/bin/java, java) --help
